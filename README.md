@@ -1,4 +1,4 @@
-cat > README.md <<EOF
+
 # Автоматизация тестирования с помощью Selenium и Python  
 
 ## Описание  
@@ -14,4 +14,3 @@ cat > README.md <<EOF
    \`\`\`sh
    git clone https://github.com/mrKamanov/stepik_auto_tests_course.git
    \`\`\`
-EOF
