@@ -11,6 +11,5 @@
 
 ## Установка и запуск  
 1. Клонируйте репозиторий:  
-   \`\`\`sh
+   
    git clone https://github.com/mrKamanov/stepik_auto_tests_course.git
-   \`\`\`
