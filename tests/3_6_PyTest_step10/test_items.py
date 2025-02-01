@@ -2,13 +2,11 @@ import time
 import pytest
 from selenium.webdriver.common.by import By
 
-# Тестовая функция
 def test_guest_should_see_add_to_basket_button(browser):
-    # Открываем страницу товара
     link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
     browser.get(link)
 
-    # Добавляем паузу для визуальной проверки (требование задания)
+    # Добавляем паузу для визуальной проверки
     time.sleep(30)
 
     # Проверяем наличие кнопки "Добавить в корзину"
