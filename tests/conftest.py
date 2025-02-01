@@ -1,25 +1,18 @@
+import os
+import json
 import pytest
-from selenium import webdriver
-from selenium.webdriver.firefox.service import Service
-from webdriver.firefox import GeckoDriverManager
-from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
+@pytest.fixture(scope="session")
+def load_config():
+    # Определяем путь к config.json относительно conftest.py
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    config_path = os.path.join(current_dir, 'config.json')
 
-def pytest_addoption(parser):
-    parser.addoption('--language', action='store', default=None,
-                     help="Choose language: es, fr, ru, etc.")
+    # Проверяем существование файла
+    if not os.path.exists(config_path):
+        raise FileNotFoundError(f"Config file not found at {config_path}")
 
-
-@pytest.fixture(scope="function")
-def browser(request):
-    user_language = request.config.getoption("language")
-    if not user_language:
-        raise pytest.UsageError("--language should be specified")
-
-    options = FirefoxOptions()
-    options.set_preference("intl.accept_languages", user_language)
-    print(f"\nstart firefox browser for test with language {user_language}..")
-    browser = webdriver.Firefox(service=Service(GeckoDriverManager().install()), options=options)
-    yield browser
-    print("\nquit browser..")
-    browser.quit()
+    # Загружаем данные из config.json
+    with open(config_path, 'r') as config_file:
+        config_data = json.load(config_file)
+    return config_data
